@@ -65,13 +65,30 @@ var _ = ginkgo.Describe("Handler", func() {
 
 		ginkgo.It("should return the correct response content", func() {
 			router := gin.Default()
-			requestBody := strings.NewReader(`{"user_id": 1, "total": 1.65, "title": "Test", "meta": {}, "completed": true}`)
+			router.POST("/log", api.HandleLogPost)
+			requestBody := strings.NewReader(`{
+                "user_id": 1,
+                "total": 1.65,
+                "title": "delectus aut autem",
+                "meta": {
+                    "logins": [
+                        {
+                            "time": "2020-08-08T01:52:50Z",
+                            "ip": "0.0.0.0"
+                        }
+                    ],
+                    "phone_numbers": {
+                        "home": "555-1212",
+                        "mobile": "123-5555"
+                    }
+                },
+                "completed": false
+            }`)
 			request := httptest.NewRequest("POST", "/log", requestBody)
 			request.Header.Set("Content-Type", "application/json")
 
 			recorder := httptest.NewRecorder()
 			router.ServeHTTP(recorder, request)
-
 			gomega.Expect(recorder.Code).To(gomega.Equal(200))
 			gomega.Expect(recorder.Body.String()).To(gomega.ContainSubstring("logged"))
 		})

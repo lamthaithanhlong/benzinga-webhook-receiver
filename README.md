@@ -21,7 +21,7 @@ The Benzinga Webhook Receiver is a Go application designed to receive and proces
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/benzinga-webhook-receiver.git
+git clone https://github.com/lamthaithanhlong/benzinga-webhook-receiver.git
 cd benzinga-webhook-receiver
 ```
 

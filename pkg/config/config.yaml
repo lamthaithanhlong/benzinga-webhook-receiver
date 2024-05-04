@@ -1,0 +1,4 @@
+port: "8080"
+batch_size: 10
+batch_interval: "20s"  # Example: 2 minutes interval for batch processing
+post_endpoint: "https://eo6je2ritrpss2t.m.pipedream.net"

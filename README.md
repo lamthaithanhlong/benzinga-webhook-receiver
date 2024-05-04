@@ -1,6 +1,3 @@
-Below is a sample README.md file for your `benzinga-webhook-receiver` project. This README includes general information about the project, how to build and run the application, as well as how to perform API testing using `curl`. It also includes instructions for running Golangci-lint and Ginkgo tests.
-
----
 
 # Benzinga Webhook Receiver
 
@@ -21,7 +18,7 @@ The Benzinga Webhook Receiver is a Go application designed to receive and proces
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/benzinga-webhook-receiver.git
+git clone https://github.com/lamthaithanhlong/benzinga-webhook-receiver.git
 cd benzinga-webhook-receiver
 ```
 
@@ -137,7 +134,3 @@ Contributions to the Benzinga Webhook Receiver are welcome! Please refer to the 
 ## License
 
 This project is licensed under the [MIT License](LICENSE.md).
-
----
-
-This README provides a comprehensive guide for anyone who needs to build, run, and test the application, making it easier for new contributors to get started and for users to understand how to interact with the service.

@@ -4,15 +4,15 @@ import (
 	"benzinga-webhook-receiver/pkg/models"
 	"bytes"
 	"encoding/json"
-	"github.com/sirupsen/logrus"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
 	"sync"
 	"time"
+
+	"github.com/sirupsen/logrus"
+	"gopkg.in/yaml.v2"
 )
 
 var ticker *time.Ticker
@@ -41,7 +41,7 @@ var Cfg Config
 
 func LoadConfig(path string) {
 	logrus.Infof("Loaded configuration: %+v", Cfg)
-	yamlFile, err := ioutil.ReadFile(path)
+	yamlFile, err := os.ReadFile(path) // Updated from ioutil.ReadFile to os.ReadFile
 	if err != nil {
 		log.Fatalf("Error reading YAML file: %s\n", err)
 	}

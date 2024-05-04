@@ -3,9 +3,10 @@ package api
 import (
 	"benzinga-webhook-receiver/pkg/config"
 	"benzinga-webhook-receiver/pkg/models"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 type LogEntry struct {
@@ -19,11 +20,6 @@ type LogEntry struct {
 type LoginRecord struct {
 	Time string `json:"time"`
 	IP   string `json:"ip"`
-}
-
-// Helper function to parse and validate time format
-func parseTime(timeStr string) (time.Time, error) {
-	return time.Parse(time.RFC3339, timeStr)
 }
 
 func SetupRoutes(router *gin.Engine) {

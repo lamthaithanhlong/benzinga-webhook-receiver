@@ -3,11 +3,12 @@ package api_test
 import (
 	"testing"
 
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
+	"github.com/onsi/ginkgo"
+	"github.com/onsi/gomega"
 )
 
-func TestApi(t *testing.T) {
-	RegisterFailHandler(Fail)
-	RunSpecs(t, "Api Suite")
+// Use ginkgo and gomega directly without the dot prefix
+func TestConfig(t *testing.T) {
+	gomega.RegisterFailHandler(ginkgo.Fail)
+	ginkgo.RunSpecs(t, "Config Suite")
 }

@@ -1,0 +1,15 @@
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+  shadow:
+    check: true
+
+linters:
+  enable:
+    - govet  # Note: Remove deprecated check-shadowing option
+    - errcheck
+    - unused
+    - gofmt
+    - goimports
+    - staticcheck
+    - revive  # Use revive instead of golint

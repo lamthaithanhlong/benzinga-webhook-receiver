@@ -3,9 +3,10 @@ package main
 import (
 	"benzinga-webhook-receiver/internal/api"
 	"benzinga-webhook-receiver/pkg/config"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"os"
 )
 
 func main() {
@@ -22,5 +23,8 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
-	router.Run(":" + port)
+	err := router.Run(":" + port)
+	if err != nil {
+		return
+	}
 }

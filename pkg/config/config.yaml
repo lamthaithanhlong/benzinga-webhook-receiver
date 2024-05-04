@@ -1,4 +1,4 @@
 port: "8080"
 batch_size: 10
 batch_interval: "20s"
-post_endpoint: "http://requestbin.cn:80/1j82ucm1"
+post_endpoint: "https://webhook.site/f1eeaf82-8cc5-4a79-bcf7-00b6e530e65c"

@@ -14,7 +14,7 @@ import (
 
 var _ = ginkgo.Describe("Handler", func() {
 	ginkgo.BeforeEach(func() {
-		config.LoadConfig("test.handler.config.yaml")
+		config.LoadConfig("test.handler.yaml")
 	})
 
 	ginkgo.Context("POST /log", func() {

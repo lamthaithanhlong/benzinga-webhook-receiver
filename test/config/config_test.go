@@ -19,7 +19,7 @@ var _ = ginkgo.Describe("Config", func() {
 	ginkgo.BeforeEach(func() {
 		router = gin.Default()
 		api.SetupRoutes(router)
-		config.LoadConfig("test.handler.config.yaml")
+		config.LoadConfig("test.config.yaml")
 		config.StartBatchTimer()
 	})
 

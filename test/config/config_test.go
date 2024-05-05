@@ -55,4 +55,23 @@ var _ = ginkgo.Describe("Config", func() {
 			time.Sleep(config.Cfg.BatchInterval + 1*time.Second)
 		})
 	})
+
+	ginkgo.Describe("Post Endpoint Error Handling", func() {
+		ginkgo.It("should handle incorrect post_endpoint URL correctly", func() {
+			// Set the post_endpoint to an incorrect URL
+			config.Cfg.PostEndpoint = "http://thisisawrongurl.com"
+
+			// Send a log entry
+			requestBody := strings.NewReader(`{"user_id": 1, "total": 1.65}`)
+			request := httptest.NewRequest("POST", "/log", requestBody)
+			request.Header.Set("Content-Type", "application/json")
+			recorder := httptest.NewRecorder()
+			router.ServeHTTP(recorder, request)
+
+			// Delay to allow batch processing attempt
+			time.Sleep(2 * time.Second)
+
+			gomega.Expect(recorder.Code).To(gomega.Equal(http.StatusBadRequest))
+		})
+	})
 })

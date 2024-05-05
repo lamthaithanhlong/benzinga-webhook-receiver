@@ -105,9 +105,9 @@ Execute the following command to run tests recursively with verbose output:
 ginkgo -r -v
 ```
 
-### Function Flow diagram
+### Project component diagram
 
-![img.png](images%2Fimg.png)
+![img_3.png](images/img_3.png)
 
 ### Activity Diagram
 
@@ -115,7 +115,11 @@ ginkgo -r -v
 
 ### Sequence Diagram
 
-![img_2.png](images%2Fimg_2.png)
+![img.png](images/sequence_diagram.png)
+
+### Component Interaction Diagram for test case
+
+![img_1.png](images/test_component.png)
 
 ### Result Log
 
@@ -126,6 +130,10 @@ ginkgo -r -v
 ### Result healthz
 
 ![img.png](images/health.png)
+
+### Security
+
+I will implement this in near future lol!
 
 ## Contributing
 

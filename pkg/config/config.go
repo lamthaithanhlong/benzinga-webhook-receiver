@@ -112,13 +112,26 @@ func sendBatch() {
 			attempts++
 		} else {
 			defer resp.Body.Close()
-			if resp.StatusCode >= 200 && resp.StatusCode < 300 {
-				logrus.Infof("Successfully sent batch of %d entries", len(batch))
+			if resp.StatusCode >= 500 {
+				logrus.WithField("status_code", resp.StatusCode).Errorf("Server error on attempt #%d, will retry", attempts+1)
+				// Exponential back-off
+				time.Sleep(time.Duration(attempts+1) * 2 * time.Second)
+				attempts++
+			} else if resp.StatusCode == 404 {
+				logrus.WithField("status_code", resp.StatusCode).Errorf("Webhook connection lost , server error on attempt #%d, will retry", attempts+1)
+				// Exponential back-off
+				time.Sleep(time.Duration(attempts+1) * 2 * time.Second)
+				attempts++
+			} else if resp.StatusCode >= 400 {
+				logrus.WithField("status_code", resp.StatusCode).Errorf("Client error on attempt #%d, will not retry", attempts+1)
+				break
+			} else if resp.StatusCode >= 200 && resp.StatusCode < 300 {
+				logrus.Infof("Successfully sent batch of %d entries on attempt #%d", len(batch), attempts+1)
+				batch = []models.LogEntry{}
 				success = true
 			} else {
-				logrus.WithField("status_code", resp.StatusCode).Error("Failed to send batch")
-				time.Sleep(2 * time.Second)
-				attempts++
+				logrus.WithField("status_code", resp.StatusCode).Errorf("Unexpected response on attempt #%d, will not retry", attempts+1)
+				break
 			}
 		}
 	}
